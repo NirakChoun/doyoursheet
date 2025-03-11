@@ -1,0 +1,571 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f0f0f0;
+  width: 100vw;
+}
+
+button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+#menuBtn {
+  cursor: pointer;
+}
+
+#appearanceBtn {
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  width: 100%;
+}
+
+#sidebar {
+  width: 100%;
+  border-right: 1px solid black;
+}
+
+.hideSidebar {
+  display: none;
+}
+
+main:has(.hideSidebar) #content {
+  max-height: none;
+  height: calc(100vh - 60px);
+}
+
+.title {
+  background-color: orange;
+  padding: 10px;
+  font-size: 1.5rem; /* Default for large screens */
+}
+
+#projectSectionContainer {
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+}
+
+.viewProjectContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  position: relative;
+}
+
+.viewProjectContainer:hover {
+  background-color: gray;
+}
+
+.navigationBtn,
+.viewProjectBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.2rem; /* Default for large screens */
+}
+
+.navigationBtn:hover,
+.viewProjectBtn:hover {
+  background-color: gray;
+}
+
+#addProjectBtn,
+#addTaskBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 1.2rem; /* Default for large screens */
+}
+
+#addProjectBtn:hover,
+#addTaskBtn:hover {
+  background-color: gray;
+}
+
+.showAddProjectInput,
+.showRenameProjectInput {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+#addProjectInput,
+.renameProjectInput {
+  grid-column: span 2;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+#cancelAddProjectBtn,
+.cancelRenameProjectBtn {
+  background-color: #d22b2b;
+}
+
+#confirmAddProjectBtn,
+.confirmRenameProjectBtn {
+  background-color: #228b22;
+}
+
+#cancelAddProjectBtn,
+.cancelRenameProjectBtn,
+#confirmAddProjectBtn,
+.confirmRenameProjectBtn {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.hideProjectActionContainer {
+  display: none;
+}
+
+.showProjectActionContainer {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+  min-width: 120px;
+}
+
+.projectActionBtn:hover {
+  background-color: darkgray;
+}
+
+.renameProjectBtn,
+.deleteProjectBtn {
+  padding: 5px 15px;
+  border: 1px solid black;
+}
+
+.renameProjectBtn:hover,
+.deleteProjectBtn:hover {
+  background-color: gray;
+}
+
+.dueDate {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0px 10px;
+}
+
+#content {
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  width: 100%;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+}
+
+.fullContent {
+  grid-column: 1 / 3;
+}
+
+#contentTitle {
+  background-color: orange;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.taskSection {
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.taskContainer {
+  background-color: bisque;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.taskLeft,
+.taskRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+#taskForm {
+  border: 1px solid black;
+  background-color: bisque;
+}
+
+.hideTaskForm {
+  display: none;
+}
+
+.showTaskForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.taskFormTitle {
+  border-bottom: 1px solid black;
+}
+
+.addTaskFormInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#taskName,
+#taskDueDate {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+#taskDescription {
+  height: 100px;
+  padding: 5px;
+  resize: none;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+#addTaskFormActionContainer,
+#editTaskFormActionContainer {
+  display: flex;
+  gap: 10px;
+}
+
+#cancelAddTaskBtn,
+#confirmAddTaskBtn,
+#cancelEditTaskBtn,
+#confirmEditTaskBtn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+#cancelAddTaskBtn,
+#cancelEditTaskBtn {
+  background-color: #d22b2b;
+}
+
+#confirmAddTaskBtn,
+#confirmEditTaskBtn {
+  background-color: #228b22;
+}
+
+.isCompleted {
+  text-decoration: line-through;
+}
+
+#viewTaskFormActionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#closeViewTaskBtn {
+  background-color: #d22b2b;
+  grid-column: 2;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+/* Small screens (up to 480px) */
+@media only screen and (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    width: 100vw;
+    margin: 0;
+  }
+
+  #sidebar {
+    width: 100vw;
+  }
+
+  #projectSectionContainer {
+    max-height: 50vh;
+  }
+
+  #content {
+    width: 100vw;
+    padding: 15px;
+    max-height: calc(50vh - 30px);
+  }
+
+  .fullContent {
+    grid-column: 1 / 2;
+  }
+
+  .showTaskForm {
+    width: 80%;
+  }
+
+  /* Sidebar font sizes */
+  .title {
+    font-size: 1.1rem; /* Smaller for phones */
+  }
+
+  .navigationBtn,
+  .viewProjectBtn {
+    font-size: 0.9rem; /* Compact for small screens */
+  }
+
+  #addProjectBtn {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large phones and small tablets (481px–767px) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    width: 100vw;
+    margin: 0;
+  }
+
+  #sidebar {
+    width: 100vw;
+  }
+
+  #projectSectionContainer {
+    max-height: 40vh;
+  }
+
+  #content {
+    width: 100vw;
+    padding: 20px;
+    max-height: calc(60vh - 40px);
+  }
+
+  .fullContent {
+    grid-column: 1 / 2;
+  }
+
+  .showTaskForm {
+    width: 60%;
+  }
+
+  .navigationBtn,
+  .viewProjectBtn {
+    font-size: 1rem; /* Slightly larger than phone */
+  }
+
+  /* Sidebar font sizes */
+  .title {
+    font-size: 1.25rem;
+  }
+
+  #addProjectBtn {
+    font-size: 1rem;
+  }
+}
+
+/* Tablets and small laptops (768px–1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    grid-template-columns: 1fr 3fr;
+    width: 100vw;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #projectSectionContainer {
+    max-height: calc(100vh - 70px);
+  }
+
+  #content {
+    width: 100%;
+    padding: 25px;
+    max-height: calc(100vh - 70px);
+  }
+
+  .fullContent {
+    grid-column: 1 / 3;
+  }
+
+  .showTaskForm {
+    width: 50%;
+  }
+
+  .navigationBtn,
+  .viewProjectBtn {
+    font-size: 1.15rem; /* Already set, kept for clarity */
+  }
+
+  /* Sidebar font sizes */
+  .title {
+    font-size: 1.35rem;
+  }
+
+  #addProjectBtn {
+    font-size: 1.15rem;
+  }
+}
+
+/* Standard laptops and desktops (1024px–1200px) */
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  main {
+    grid-template-columns: 1fr 5fr;
+    width: 100vw;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #projectSectionContainer {
+    max-height: calc(100vh - 60px);
+  }
+
+  #content {
+    width: 100%;
+    padding: 30px;
+    max-height: calc(100vh - 60px);
+  }
+
+  .fullContent {
+    grid-column: 1 / 3;
+  }
+
+  .showTaskForm {
+    width: 40%;
+  }
+
+  /* Sidebar font sizes */
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .navigationBtn,
+  .viewProjectBtn {
+    font-size: 1.15rem;
+  }
+
+  #addProjectBtn {
+    font-size: 1.15rem;
+  }
+}
+
+/* Large screens and widescreen desktops (1201px+) */
+@media only screen and (min-width: 1201px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  main {
+    grid-template-columns: 1.5fr 7fr;
+    width: 100vw;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #projectSectionContainer {
+    max-height: calc(100vh - 60px);
+  }
+
+  #content {
+    width: 100%;
+    padding: 30px;
+    max-height: calc(100vh - 60px);
+  }
+
+  .fullContent {
+    grid-column: 1 / 3;
+  }
+
+  .showTaskForm {
+    width: 30%;
+  }
+
+  .title {
+    font-size: 1.5rem; /* Matches default */
+  }
+
+  .navigationBtn,
+  .viewProjectBtn {
+    font-size: 1.2rem; /* Matches default */
+  }
+
+  #addProjectBtn {
+    font-size: 1.2rem; /* Matches default */
+  }
+}
