@@ -1,5 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root {
+  /* Light mode (default) */
+  --background-color: #f0f0f0;
+  --header-bg: transparent;
+  --header-border: 1px solid black;
+  --sidebar-bg: transparent;
+  --sidebar-border: 1px solid black;
+  --title-bg: orange;
+  --content-bg: white;
+  --content-title-bg: orange;
+  --content-title-border: 1px solid black;
+  --task-bg: bisque;
+  --task-border: 1px solid black;
+  --form-bg: bisque;
+  --form-border: 1px solid black;
+  --footer-bg: transparent;
+  --footer-border: 1px solid black;
+  --text-color: black;
+  --hover-bg: gray;
+}
+
+body.dark-theme {
+  /* Dark mode overrides */
+  --background-color: #1a1a1a;
+  --header-bg: #2c2c2c;
+  --header-border: 1px solid #555;
+  --sidebar-bg: #2c2c2c;
+  --sidebar-border: 1px solid #555;
+  --title-bg: #ff8c00; /* Darker orange */
+  --content-bg: #333;
+  --content-title-bg: #ff8c00;
+  --content-title-border: 1px solid #555;
+  --task-bg: #444;
+  --task-border: 1px solid #555;
+  --form-bg: #444;
+  --form-border: 1px solid #555;
+  --footer-bg: #2c2c2c;
+  --footer-border: 1px solid #555;
+  --text-color: #e0e0e0;
+  --hover-bg: #555;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,8 +53,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
-  background-color: #f0f0f0;
+  background-color: var(--background-color);
   width: 100vw;
+  color: var(--text-color);
 }
 
 button {
@@ -31,7 +74,8 @@ header {
   align-items: center;
   padding: 5px 10px;
   width: 100%;
-  border-bottom: 1px solid black;
+  background-color: var(--header-bg);
+  border-bottom: var(--header-border);
 }
 
 #menuBtn {
@@ -51,7 +95,8 @@ main {
 
 #sidebar {
   width: 100%;
-  border-right: 1px solid black;
+  background-color: var(--sidebar-bg);
+  border-right: var(--sidebar-border);
 }
 
 .hideSidebar {
@@ -64,9 +109,9 @@ main:has(.hideSidebar) #content {
 }
 
 .title {
-  background-color: orange;
+  background-color: var(--title-bg);
   padding: 10px;
-  font-size: 1.5rem; /* Default for large screens */
+  font-size: 1.5rem;
 }
 
 #projectSectionContainer {
@@ -81,7 +126,7 @@ main:has(.hideSidebar) #content {
 }
 
 .viewProjectContainer:hover {
-  background-color: gray;
+  background-color: var(--hover-bg);
 }
 
 .navigationBtn,
@@ -91,12 +136,12 @@ main:has(.hideSidebar) #content {
   gap: 10px;
   padding: 10px 20px;
   cursor: pointer;
-  font-size: 1.2rem; /* Default for large screens */
+  font-size: 1.2rem;
 }
 
 .navigationBtn:hover,
 .viewProjectBtn:hover {
-  background-color: gray;
+  background-color: var(--hover-bg);
 }
 
 #addProjectBtn,
@@ -107,12 +152,12 @@ main:has(.hideSidebar) #content {
   gap: 10px;
   padding: 10px 0;
   width: 100%;
-  font-size: 1.2rem; /* Default for large screens */
+  font-size: 1.2rem;
 }
 
 #addProjectBtn:hover,
 #addTaskBtn:hover {
-  background-color: gray;
+  background-color: var(--hover-bg);
 }
 
 .showAddProjectInput,
@@ -155,7 +200,7 @@ main:has(.hideSidebar) #content {
 }
 
 .showProjectActionContainer {
-  background-color: aliceblue;
+  background-color: var(--form-bg); /* Reuse form background */
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -166,7 +211,7 @@ main:has(.hideSidebar) #content {
 }
 
 .projectActionBtn:hover {
-  background-color: darkgray;
+  background-color: var(--hover-bg);
 }
 
 .renameProjectBtn,
@@ -177,7 +222,7 @@ main:has(.hideSidebar) #content {
 
 .renameProjectBtn:hover,
 .deleteProjectBtn:hover {
-  background-color: gray;
+  background-color: var(--hover-bg);
 }
 
 .dueDate {
@@ -187,7 +232,7 @@ main:has(.hideSidebar) #content {
 }
 
 #content {
-  background-color: white;
+  background-color: var(--content-bg);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -203,8 +248,8 @@ main:has(.hideSidebar) #content {
 }
 
 #contentTitle {
-  background-color: orange;
-  border: 1px solid black;
+  background-color: var(--content-title-bg);
+  border: var(--content-title-border);
   padding: 20px;
 }
 
@@ -216,12 +261,12 @@ main:has(.hideSidebar) #content {
 }
 
 .taskContainer {
-  background-color: bisque;
+  background-color: var(--task-bg);
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid black;
+  border: var(--task-border);
 }
 
 .taskLeft,
@@ -233,8 +278,8 @@ main:has(.hideSidebar) #content {
 }
 
 #taskForm {
-  border: 1px solid black;
-  background-color: bisque;
+  border: var(--form-border);
+  background-color: var(--form-bg);
 }
 
 .hideTaskForm {
@@ -326,7 +371,8 @@ footer {
   gap: 10px;
   padding: 5px 10px;
   width: 100%;
-  border: 1px solid black;
+  background-color: var(--footer-bg);
+  border: var(--footer-border);
 }
 
 /* Small screens (up to 480px) */
@@ -363,14 +409,13 @@ footer {
     width: 80%;
   }
 
-  /* Sidebar font sizes */
   .title {
-    font-size: 1.1rem; /* Smaller for phones */
+    font-size: 1.1rem;
   }
 
   .navigationBtn,
   .viewProjectBtn {
-    font-size: 0.9rem; /* Compact for small screens */
+    font-size: 0.9rem;
   }
 
   #addProjectBtn {
@@ -414,10 +459,9 @@ footer {
 
   .navigationBtn,
   .viewProjectBtn {
-    font-size: 1rem; /* Slightly larger than phone */
+    font-size: 1rem;
   }
 
-  /* Sidebar font sizes */
   .title {
     font-size: 1.25rem;
   }
@@ -462,10 +506,9 @@ footer {
 
   .navigationBtn,
   .viewProjectBtn {
-    font-size: 1.15rem; /* Already set, kept for clarity */
+    font-size: 1.15rem;
   }
 
-  /* Sidebar font sizes */
   .title {
     font-size: 1.35rem;
   }
@@ -508,7 +551,6 @@ footer {
     width: 40%;
   }
 
-  /* Sidebar font sizes */
   .title {
     font-size: 1.4rem;
   }
@@ -557,15 +599,15 @@ footer {
   }
 
   .title {
-    font-size: 1.5rem; /* Matches default */
+    font-size: 1.5rem;
   }
 
   .navigationBtn,
   .viewProjectBtn {
-    font-size: 1.2rem; /* Matches default */
+    font-size: 1.2rem;
   }
 
   #addProjectBtn {
-    font-size: 1.2rem; /* Matches default */
+    font-size: 1.2rem;
   }
 }

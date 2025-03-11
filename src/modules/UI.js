@@ -1,6 +1,7 @@
 import "../styles.css";
 import menuImg from "../assets/menu.svg";
 import darkImg from "../assets/dark.svg";
+import lightImg from "../assets/light.svg"; // Add this new import
 import allTaskImg from "../assets/task.svg";
 import dueToday from "../assets/dueToday.svg";
 import importantImg from "../assets/important.svg";
@@ -55,7 +56,7 @@ export default class UI {
     appearanceBtn.id = "appearanceBtn";
     const img = document.createElement("img");
     img.id = "appearanceBtnImg";
-    img.src = darkImg;
+    img.src = darkImg; // Start with dark icon (light mode)
     img.height = "32";
     img.width = "32";
     appearanceBtn.appendChild(img);
@@ -66,8 +67,33 @@ export default class UI {
 
   appearanceBtnEvent() {
     const appearanceBtn = document.querySelector("#appearanceBtn");
+    const appearanceBtnImg = document.querySelector("#appearanceBtnImg");
+    const body = document.body;
+
+    // Load saved theme from localStorage on page load
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      body.classList.add("dark-theme");
+      appearanceBtnImg.src = lightImg; // Show light icon for dark mode
+    } else {
+      body.classList.remove("dark-theme"); // Ensure light mode if no/invalid saved theme
+      appearanceBtnImg.src = darkImg; // Show dark icon for light mode
+      localStorage.setItem("theme", "light"); // Default to light if not set
+    }
+
+    // Toggle theme on button click
     appearanceBtn.addEventListener("click", () => {
-      alert("Here");
+      if (body.classList.contains("dark-theme")) {
+        // Switch to light mode
+        body.classList.remove("dark-theme");
+        appearanceBtnImg.src = darkImg;
+        localStorage.setItem("theme", "light");
+      } else {
+        // Switch to dark mode
+        body.classList.add("dark-theme");
+        appearanceBtnImg.src = lightImg;
+        localStorage.setItem("theme", "dark");
+      }
     });
   }
 
@@ -491,7 +517,7 @@ export default class UI {
   loadAddTaskForm() {
     const form = document.querySelector("#taskForm");
     this.clearChildren(form);
-    form.removeEventListener("submit", this.handleTaskEdit); // Prevent edit handler interference
+    form.removeEventListener("submit", this.handleTaskEdit);
 
     const h2 = document.createElement("h2");
     h2.className = "taskFormTitle";
@@ -612,7 +638,7 @@ export default class UI {
   loadEditTaskForm(id) {
     const form = document.querySelector("#taskForm");
     this.clearChildren(form);
-    form.removeEventListener("submit", this.handleTaskSubmit); // Prevent add handler interference
+    form.removeEventListener("submit", this.handleTaskEdit);
 
     const h2 = document.createElement("h2");
     h2.className = "taskFormTitle";
@@ -696,7 +722,7 @@ export default class UI {
   confirmAddTaskBtnEvent() {
     const form = document.querySelector("#taskForm");
     form.removeEventListener("submit", this.handleTaskSubmit);
-    form.removeEventListener("submit", this.handleTaskEdit); // Ensure no edit handler remains
+    form.removeEventListener("submit", this.handleTaskEdit);
     form.addEventListener("submit", this.handleTaskSubmit.bind(this));
   }
 
@@ -751,7 +777,7 @@ export default class UI {
 
   confirmEditProjectBtnEvent(id) {
     const form = document.querySelector("#taskForm");
-    form.removeEventListener("submit", this.handleTaskSubmit); // Ensure no add handler remains
+    form.removeEventListener("submit", this.handleTaskSubmit);
     form.removeEventListener("submit", this.handleTaskEdit);
     form.addEventListener("submit", (e) => this.handleTaskEdit(e, id));
   }
